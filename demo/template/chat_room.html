@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>纯净聊天室</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no" />
+    <link rel="stylesheet" href="/static/css/chatstyle.css?v={{handler.time_now}}">
+    <link rel="stylesheet" type='text/css' href="/static/css/all.css?v={{handler.time_now}}">
+    <script src="/static/js/jquery-1.12.4.min.js"></script></head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="/static/js/js.cookie.js"></script>
+    
+<body>
+    <!-- <div id="pop_up">已经是顶部啦！</div>
+    <img src='/static/img/limit.png' id='limit'> -->
+    <div id='title'>匿名划水带薪拉💩</div>
+    <a href="/home"><button id = 'back' onclick="">X</button></a>
+    <div id = 'msg'>
+        
+    </div>
+    <div class="footer">
+        <nav class="menu">
+            <input type="checkbox" href="#" class="menu-open" name="menu-open" id="menu-open" />
+            <label class="menu-open-button" for="menu-open">
+             <span class="lines line-1"></span>
+             <span class="lines line-2"></span>
+             <span class="lines line-3"></span>
+           </label>
+         
+            <a href="#" class="menu-item blue"> <i class="fa fa-image"></i> </a>
+            <a href="#" class="menu-item green"> <i class="fa fa-coffee"></i> </a>
+            <a href="#" class="menu-item red"> <i class="fa fa-heart"></i> </a>
+            <a href="#" class="menu-item purple"> <i class="fa fa-microphone"></i> </a>
+            <a href="#" class="menu-item orange"> <i class="fa fa-star"></i> </a>
+            <a href="#" class="menu-item lightblue"> <i class="fa fa-diamond"></i> </a>
+         </nav>
+        <!-- <button class = 'add_img'>➕</button> -->
+        <input type='file' style="display: none; " class='input_img'>
+        <input class = 'inputbox'id="txt">
+        <button class='sendbtn' id='btn'>send</button>
+        
+       
+
+    </div>
+
+</body>
+<script>
+    var WEBSOCKET_URL = "{{ handler.websocket_url }}";
+    var USER_ID = '123';
+    var NAME = '匿名用户';
+    var ICON_ID = '0';
+</script> 
+<script src="/static/js/script.js?v={{handler.time_now}}"></script>
+<!-- <script src='/static/js/timecheck.js?v={{handler.time_now}}'></script> -->
+<script src="/static/js/index.umd.js?v={{handler.time_now}}"></script>
+<script src="/static/js/pulltorefresh.js?v={{handler.time_now}}"></script>
+<script src='/static/js/coffee-img.js?v={{handler.time_now}}'></script>
+<script src='/static/js/md5.js?v={{handler.time_now}}'></script>
+<script src='/static/js/pop.js?v={{handler.time_now}}'></script>
+
+
+</html>
+
+<!-- 修改样式专用：<div class="box">
+            <div> <span class = 'time'>14:11</span></div>
+            <div class='icon'>
+                <img src="/static/img/icon.jpg">            </div>
+            <div class='info'>
+                <span class="username">ryan</span>
+  
+            </div>
+            <div class='txt'><p>this is msg: idk what to say, but i have to see if it is break the limit</p></div>
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box">
+            <div> <span class = 'time'>14:11</span></div>
+
+            <div class='icon'>
+                <img src="/static/img/icon.jpg">            </div>
+            <div class='info'>
+                
+                <span class="username">dumbass kid</span>
+            </div>
+            <div class='txt'><p>mom, im on TV!mom, im on TV!mom, im on TV!mom, im on TV!mom, im on TV!mom, im on TV!mom, im on TV!mom, im on TV!</p></div>
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box" align='right'>
+            <div> <span class = 'time'>14:11</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">            </div>
+            <div class='infoself'>
+                <span class="usernameself">啊吧啊吧</span>
+               
+            </div>
+            <div class='txtself'><p>this is msg2</p></div>
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box">
+            <div> <span class = 'time'>14:11</span></div>
+
+            <div class='icon'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='info'>
+                <span class="username">听说名字很长会出bug</span>
+            
+            </div>
+            <div class='txt'><p>妈，你看到我了吗？！</p>
+            </div>
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+            </div>
+            <div class='txtself'><p>omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+            </div>
+            <div class='txtself'><p>omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+            </div>
+            <div class='txtself'><p>omg.. shut up!omg.. shut up!omg.. shut up!omg.. shut up!omg.. shut up!omg.. shut up!omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+            </div>
+            <div class='txtself'><p>omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+            </div>
+            <div class='txtself'><p>omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div>
+        <div class="box"align='right'>
+            <div> <span class = 'time'>14:12</span></div>
+
+            <div class='iconself'>
+                <img src="/static/img/icon.jpg">
+            </div>
+            <div class='infoself'>
+                <span class="usernameself">mom</span>
+             
+    icon        </div>
+            <div class='txtself'><p>omg.. shut up!</p><img class = 'loader'src='/static/img/gear.png'></div>
+            
+                <div class=seperator>
+            </div>
+        </div> -->
+
+        
